@@ -32,7 +32,7 @@ public class TransactionController {
   }
 
   @SneakyThrows
-  @PostMapping(value = "/transactions/{transactiontypeid}")
+  @PostMapping(value = "v1/create/transactions/{transactiontypeid}")
 
   public ResponseEntity<ViewTransactionDto> createTransaction(@RequestBody CreateTransactionDto createTransactionDto, @PathVariable("transactiontypeid") int transactionTypeId ) throws IOException {
 
@@ -50,7 +50,7 @@ public class TransactionController {
 
   }
 
-  @GetMapping(value = "/transactions/{transactiontypeid}/{customerid}")
+  @GetMapping(value = "v1/transactions/{transactiontypeid}/{customerid}")
   public ResponseEntity<List<ViewTransactionDto>> getTransactionHistoryByType(@PathVariable("customerid")Long customerId, @PathVariable("transactiontypeid") int transactionTypeId ) throws IOException {
 
     log.info("Getting transaction of type :"+transactionTypeId + "{} for this customerId"+ customerId);
@@ -63,7 +63,7 @@ public class TransactionController {
 
   }
 
-  @GetMapping(value = "/transactions/customers/{customerid}")
+  @GetMapping(value = "v1/transactions/customers/{customerid}")
   public ResponseEntity<List<ViewTransactionDto>> getAllTransactionHistory(@PathVariable("customerid")Long customerId ) throws IOException {
 
     log.info("Getting transaction history {} for this customerId"+ customerId);

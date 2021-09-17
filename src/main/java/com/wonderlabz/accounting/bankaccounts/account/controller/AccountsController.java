@@ -28,7 +28,7 @@ public class AccountsController {
   }
 
   @SneakyThrows
-  @PostMapping(value = "/accounts/create")
+  @PostMapping(value = "v1/accounts/create")
 
   public ResponseEntity<ViewAccountDto> openAccount(@RequestBody CreateAccountDto accountDto) throws IOException {
 

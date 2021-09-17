@@ -25,12 +25,11 @@ public class CustomerController {
   }
 
   @SneakyThrows
-  @PostMapping(value = "/customers/create")
+  @PostMapping(value = "v1/customers/create")
 
   public ResponseEntity<Customer> createCustomer(@RequestBody @Validated CreateCustomerDto createCustomerDto) throws IOException {
 
     log.info("New Registration : {} ", createCustomerDto);
-
     Customer customer = customerService.getCustomerByIdNumber(createCustomerDto.getCustomerIdNumber());
     if (Objects.isNull(customer)) {
       final Customer cust = customerService.createCustomer(createCustomerDto);
