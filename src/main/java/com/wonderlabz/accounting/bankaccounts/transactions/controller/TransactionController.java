@@ -60,7 +60,7 @@ public class TransactionController {
 
     CheckBankDetailsUtil.checkCustomer(customerId);
     List<ViewTransactionDto> viewTransactionDtoList = transactionService.getTransactionHistoryByType(TransactionType.getTransactionType(transactionTypeId),customerId);
-    return new ResponseEntity<>( viewTransactionDtoList, HttpStatus.CREATED);
+    return new ResponseEntity<>( viewTransactionDtoList, HttpStatus.OK);
 
   }
 
@@ -73,7 +73,7 @@ public class TransactionController {
 
     CheckBankDetailsUtil.checkCustomer(customerId);
     List<ViewTransactionDto> viewTransactionDtoList = transactionService.getAllTransactions(customerId);
-    return new ResponseEntity<>( viewTransactionDtoList, HttpStatus.CREATED);
+    return new ResponseEntity<>( viewTransactionDtoList, HttpStatus.OK);
 
   }
 

@@ -43,7 +43,7 @@ public class CustomerServiceImpl implements CustomerService{
 
     }else {
 
-      throw new IllegalArgumentException("The user with Customer ID Number is not found: "+ customerDto.getCustomerIdNumber());
+      throw new BadRequestDataException("The user with Customer ID Number is not found: "+ customerDto.getCustomerIdNumber());
     }
 
   }
