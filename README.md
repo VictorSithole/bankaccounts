@@ -21,6 +21,8 @@ The h2 database instance is accessible at <http://localhost:8080/h2-console>.
 Get username,password and database name for the h2 database instance
 in the application properties.
 
+Check also unit test on the unit test package.
+
 **Recommendations for the live environment:**
 
 1.  Check all transactions using security token, userid, or login key(jwt).

@@ -8,6 +8,7 @@ import com.wonderlabz.accounting.bankaccounts.customer.model.Customer;
 import com.wonderlabz.accounting.bankaccounts.customer.repository.CustomerServiceRepository;
 import com.wonderlabz.accounting.bankaccounts.enums.AccountType;
 import com.wonderlabz.accounting.bankaccounts.enums.TransactionType;
+import com.wonderlabz.accounting.bankaccounts.exceptions.BadRequestDataException;
 import com.wonderlabz.accounting.bankaccounts.transactions.dto.CreateTransactionDto;
 import com.wonderlabz.accounting.bankaccounts.transactions.dto.ViewTransactionDto;
 import com.wonderlabz.accounting.bankaccounts.transactions.model.Transaction;
@@ -42,7 +43,7 @@ public class CheckBankDetailsUtil {
 
     Account account = accountRepository.findByAccountNumber(accountNumber);
     if(Objects.isNull(account)){
-      throw new IllegalArgumentException("Account with this Account ID does not exist "+ accountNumber);
+      throw new BadRequestDataException("Account with this Account ID does not exist "+ accountNumber);
     }
 
     return account;
@@ -62,7 +63,7 @@ public class CheckBankDetailsUtil {
 
     Customer customer = customerServiceRepository.findCustomerByCustomerIdNumber(customerIdNumber);
     if(Objects.isNull(customer)){
-      throw new IllegalArgumentException("Customer with this CustomerIDNumber does not exist "+ customerIdNumber);
+      throw new BadRequestDataException("Customer with this CustomerIDNumber does not exist "+ customerIdNumber);
     }
 
     return customer;
@@ -82,7 +83,7 @@ public class CheckBankDetailsUtil {
 
       if (sourceAccount.getAccountBalance() -(CurrentAccount.OVERDRAFT)<= debitedAccountBalance) {
 
-        throw new IllegalArgumentException("Account balance not sufficient to transact this amount, the minimum overdraft amount for savings account is "+CurrentAccount.OVERDRAFT);
+        throw new BadRequestDataException("Account balance not sufficient to transact this amount, the minimum overdraft amount for savings account is "+CurrentAccount.OVERDRAFT);
       }
     }
 
