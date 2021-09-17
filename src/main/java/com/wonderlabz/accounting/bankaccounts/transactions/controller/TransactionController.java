@@ -3,6 +3,7 @@ package com.wonderlabz.accounting.bankaccounts.transactions.controller;
 import com.wonderlabz.accounting.bankaccounts.customer.model.Customer;
 import com.wonderlabz.accounting.bankaccounts.customer.service.CustomerService;
 import com.wonderlabz.accounting.bankaccounts.enums.TransactionType;
+import com.wonderlabz.accounting.bankaccounts.exceptions.BadRequestDataException;
 import com.wonderlabz.accounting.bankaccounts.transactions.dto.CreateTransactionDto;
 import com.wonderlabz.accounting.bankaccounts.transactions.dto.ViewTransactionDto;
 import com.wonderlabz.accounting.bankaccounts.transactions.service.TransactionProcessorFactory;
@@ -45,7 +46,7 @@ public class TransactionController {
       ViewTransactionDto viewTransactionDto = TransactionProcessorFactory.getTransactionType(transactionTypeId).createTransaction(createTransactionDto);
       return new ResponseEntity<>(viewTransactionDto, HttpStatus.CREATED);
     }else {
-      throw new IllegalArgumentException(" Customer does not exist");
+      throw new BadRequestDataException(" Customer does not exist");
     }
 
   }

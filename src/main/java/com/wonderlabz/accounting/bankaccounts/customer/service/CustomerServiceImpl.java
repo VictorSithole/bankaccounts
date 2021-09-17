@@ -4,6 +4,7 @@ import com.wonderlabz.accounting.bankaccounts.account.repository.AccountReposito
 import com.wonderlabz.accounting.bankaccounts.customer.dto.CreateCustomerDto;
 import com.wonderlabz.accounting.bankaccounts.customer.model.Customer;
 import com.wonderlabz.accounting.bankaccounts.customer.repository.CustomerServiceRepository;
+import com.wonderlabz.accounting.bankaccounts.exceptions.BadRequestDataException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -53,7 +54,7 @@ public class CustomerServiceImpl implements CustomerService{
 
       Optional<Customer> customer = customerServiceRepository.findById(Id);
       if(Objects.isNull(customer)){
-        throw new IllegalArgumentException("Customer with this CustomerIDNumber does not exist "+ Id);
+        throw new BadRequestDataException("Customer with this CustomerIDNumber does not exist "+ Id);
       }
 
       return customer.get();

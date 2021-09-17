@@ -3,6 +3,7 @@ package com.wonderlabz.accounting.bankaccounts.customer.controller;
 import com.wonderlabz.accounting.bankaccounts.customer.dto.CreateCustomerDto;
 import com.wonderlabz.accounting.bankaccounts.customer.model.Customer;
 import com.wonderlabz.accounting.bankaccounts.customer.service.CustomerService;
+import com.wonderlabz.accounting.bankaccounts.exceptions.BadRequestDataException;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class CustomerController {
       final Customer cust = customerService.createCustomer(createCustomerDto);
       return new ResponseEntity<>( cust, HttpStatus.CREATED);
     }else{
-      throw new IllegalArgumentException("There is a customer with ID Number "+ createCustomerDto.getCustomerIdNumber());
+      throw new BadRequestDataException("There is a customer with ID Number "+ createCustomerDto.getCustomerIdNumber());
     }
 
   }
